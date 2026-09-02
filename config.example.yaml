@@ -1,0 +1,74 @@
+# 复制本文件为 config.yaml 后再填写。
+#   Windows: copy config.example.yaml config.yaml
+#   Linux/macOS: cp config.example.yaml config.yaml
+#
+# 密码只保存在本机，不要把 config.yaml 发给别人或提交到 git。
+
+# auto = 自动识别认证页类型（推荐）
+# 也可强制指定: srun（深澜）| ruijie（锐捷）| drcom | generic（点一下连接）| custom
+backend: auto
+
+# 学号 / 校园网账号。如果认证页只需要点「连接」不需要账号，留空即可。
+username: ""
+password: ""
+
+# 认证页地址。留空则开机后自动探测。
+# 如果 probe 能找到，建议填上，会更快更稳。
+# 例如: http://10.0.0.55/srun_portal_pc  或  http://10.0.0.1:801/eportal/
+portal_url: ""
+
+# 只点连接、不填账号密码（酒店式/一键上网页）
+click_only: false
+
+# 用校园网网卡的 IP 发认证请求，让流量不进梯子的 TUN 虚拟网卡
+bind_campus_nic: true
+
+# 按 IP 前缀识别校园网网卡（Clash Fake-IP 198.18/198.19 会自动排除）
+campus_ip_prefixes:
+  - "10.0.0.0/8"
+  - "172.16.0.0/12"
+  - "192.168.0.0/16"
+
+# 有 VMware / Hyper-V 虚拟网卡时建议填写物理网卡名（以 probe 输出为准），例如 以太网
+# 学校如果给以太网发的是公网 IP（不是 10/172/192.168），填了这项更稳
+campus_nic_name: ""
+
+# 深澜（srun）额外参数。ac_id 留空则从认证页解析，解析不到会尝试 1-5。
+srun:
+  ac_id: ""
+  double_stack: false
+
+# 锐捷 eportal
+ruijie:
+  service: ""
+
+# 自定义请求（backend: custom 时使用，可用 {username} {password} 占位）
+custom:
+  method: POST
+  url: ""
+  body: ""
+  headers: {}
+  success_contains: ""
+
+# 梯子处理：认证请求不走系统 HTTP 代理。
+# 拔插网线后如果 TUN 把默认路由截死，会临时关掉 Clash TUN；
+# 若恢复 TUN 后仍然不通，会保持 TUN 关闭（可在 Clash 里改用系统代理）。
+vpn:
+  bypass_proxy: true
+  clash_auto: true
+  clash_api: ""          # 留空则自动尝试 127.0.0.1:9090 / 9097 等
+  clash_secret: ""       # Clash 控制密钥，没有就留空
+  clash_switch_direct: true
+  clash_disable_tun: true
+  disable_system_proxy: true
+  # 认证前/后额外执行的命令（可选）。例如暂时关掉某个客户端：
+  pre_commands: []
+  post_commands: []
+
+watch:
+  interval_seconds: 15
+  startup_delay_seconds: 8
+  link_up_delay_seconds: 5
+
+logging:
+  level: INFO

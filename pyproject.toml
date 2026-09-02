@@ -1,0 +1,20 @@
+[project]
+name = "campus-auto-connect"
+version = "1.0.0"
+description = "校园网认证页自动连接：开机自启，认证时绕过梯子"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.scripts]
+campus-connect = "campus_connect.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["campus_connect*"]

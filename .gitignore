@@ -1,0 +1,15 @@
+.venv/
+venv/
+__pycache__/
+config.yaml
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+.campus-auto-connect/
+portal-dump.html
+.python-version
+.DS_Store
+agent-tools/
