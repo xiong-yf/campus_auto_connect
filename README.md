@@ -78,6 +78,7 @@ chmod +x scripts/install.sh scripts/connect.sh
 | `portal_url` | 认证页地址。`probe` 能找到的话建议填上 |
 | `backend` | `auto` 即可。也可强制 `srun` / `ruijie` / `drcom` / `generic` |
 | `click_only` | 只点连接、不登录账号时设为 `true` |
+| `campus_nic_name` | 物理网卡名。有 VMware 时建议填 `以太网`（以 `probe` 为准） |
 | `vpn.clash_api` | Clash 控制地址，一般不用填，会自动扫端口 |
 | `vpn.clash_secret` | Clash 的 secret，有就填 |
 | `vpn.clash_disable_tun` | 认证时临时关 TUN，默认 true |
